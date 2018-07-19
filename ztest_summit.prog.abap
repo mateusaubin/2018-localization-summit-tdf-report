@@ -16,7 +16,7 @@ END-OF-SELECTION.
 
   DATA(lo_report) = NEW zcl_sped_lstr_report( lo_parameters ).
 
-  lo_report->pre_execute_sped( abap_false ).
+  lo_report->execute_sped( ).
 
   DATA(lt_output) = lo_report->get_result( ).
 
