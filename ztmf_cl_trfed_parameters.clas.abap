@@ -62,7 +62,7 @@ CLASS ZTMF_CL_TRFED_PARAMETERS IMPLEMENTATION.
     set_where_clause(
           EXPORTING
             iv_use_mandt   = abap_true
-            iv_use_empresa = abap_true
+            iv_use_empresa = abap_false
             iv_use_filial  = abap_false
           CHANGING
             cv_where_clause = mv_where_clause_no_filial
