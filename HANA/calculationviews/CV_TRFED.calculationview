@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_TRFED" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="Calculation View for TDF Reporting Framework Extensibility Demo"/>
+  <metadata activatedAt="2018-07-26 23:00:38.0" changedAt="2018-07-26 18:00:18.404"/>
+  <localVariables>
+    <variable id="P_EMPRESA" parameter="true">
+      <descriptions defaultDescription="Empresa"/>
+      <variableProperties datatype="NVARCHAR" length="4" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+        <defaultRange/>
+      </variableProperties>
+    </variable>
+    <variable id="P_DT_INI" parameter="true">
+      <descriptions defaultDescription="Initial Date"/>
+      <variableProperties datatype="DATE" mandatory="false">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+        <defaultRange/>
+      </variableProperties>
+    </variable>
+    <variable id="P_DT_FIN" parameter="true">
+      <descriptions defaultDescription="Final Date"/>
+      <variableProperties datatype="DATE" mandatory="false">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+        <defaultRange/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="NF_DOCUMENTO_ITEM_IMPOSTO" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/sap.glo.tmflocbr.ctr/calculationviews/NF_DOCUMENTO_ITEM_IMPOSTO</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_DOC">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="EMPRESA">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$P_EMPRESA$$"/>
+        </viewAttribute>
+        <viewAttribute id="FILIAL"/>
+        <viewAttribute id="NUM_DOC"/>
+        <viewAttribute id="NUM_ITEM"/>
+        <viewAttribute id="NF_ID"/>
+        <viewAttribute id="DT_DOC">
+          <filter xsi:type="AccessControl:RangeValueFilter" operator="BT" including="true" lowValue="$$P_DT_INI$$" highValue="$$P_DT_FIN$$"/>
+        </viewAttribute>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="REG" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>'HELO'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SORTER" length="100" expressionLanguage="COLUMN_ENGINE">
+          <formula>sqladd(sqladd(sqladd(sqladd(&quot;MANDT&quot;, &quot;EMPRESA&quot;), &quot;FILIAL&quot;), &quot;NUM_DOC&quot;), &quot;NUM_ITEM&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#NF_DOCUMENTO_ITEM_IMPOSTO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NF_ID" source="NF_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILIAL" source="FILIAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUM_DOC" source="NUM_DOC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUM_ITEM" source="NUM_ITEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DT_DOC" source="DT_DOC"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="P_DOC">
+    <descriptions/>
+    <attributes>
+      <attribute id="MANDT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT"/>
+        <keyMapping columnObjectName="P_DOC" columnName="MANDT"/>
+      </attribute>
+      <attribute id="REG" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REG"/>
+        <keyMapping columnObjectName="P_DOC" columnName="REG"/>
+      </attribute>
+      <attribute id="NF_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="P_DOC" columnName="NF_ID"/>
+      </attribute>
+      <attribute id="SORTER" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SORTER"/>
+        <keyMapping columnObjectName="P_DOC" columnName="SORTER"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_DOC" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
