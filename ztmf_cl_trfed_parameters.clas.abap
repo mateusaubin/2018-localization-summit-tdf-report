@@ -54,7 +54,7 @@ CLASS ZTMF_CL_TRFED_PARAMETERS IMPLEMENTATION.
     set_empresa( p_emp ).
     set_dt_ini( CONV #( lv_dt_ini ) ).
     set_dt_fin( CONV #( lv_dt_fin ) ).
-    set_orgstr_key( /tmf/cl_orgstr_utilities=>mc_bp ).
+    set_orgstr_key( /tmf/cl_orgstr_utilities=>mc_cc ).
     set_erp_keys( ).
 
 
