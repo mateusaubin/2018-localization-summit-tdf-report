@@ -3,7 +3,7 @@
 *&---------------------------------------------------------------------*
 *&
 *&---------------------------------------------------------------------*
-REPORT ZTMF_TRFED_REPORT.
+REPORT ztmf_trfed_report.
 
 START-OF-SELECTION.
 
@@ -12,9 +12,12 @@ START-OF-SELECTION.
 
 END-OF-SELECTION.
 
-  DATA(lo_parameters) = NEW ZTMF_CL_TRFED_PARAMETERS( p_dat = p_dat p_emp = p_emp ).
+  DATA(lo_parameters) = NEW ztmf_cl_trfed_parameters(
+                              p_dat = p_dat
+                              p_emp = p_emp
+                        ).
 
-  DATA(lo_report) = NEW ZTMF_CL_TRFED( lo_parameters ).
+  DATA(lo_report) = NEW ztmf_cl_trfed( lo_parameters ).
 
   lo_report->execute_sped( ).
 

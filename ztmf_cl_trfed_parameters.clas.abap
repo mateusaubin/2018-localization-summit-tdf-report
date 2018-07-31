@@ -1,20 +1,20 @@
-class ZTMF_CL_TRFED_PARAMETERS definition
-  public
-  inheriting from /TMF/CL_SPED_PARAMETERS
-  final
-  create public .
+CLASS ztmf_cl_trfed_parameters DEFINITION
+  PUBLIC
+  INHERITING FROM /tmf/cl_sped_parameters
+  FINAL
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  methods CONSTRUCTOR
-    importing
-      !P_EMP type /TMF/DE_EMPRESA
-      !P_DAT type /TMF/DE_DATA .
+    METHODS constructor
+      IMPORTING
+        !p_emp TYPE /tmf/de_empresa
+        !p_dat TYPE /tmf/de_data .
 
-  methods VALIDATE
-    redefinition .
-protected section.
-private section.
+    METHODS validate
+        REDEFINITION .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 ENDCLASS.
 
 
@@ -72,11 +72,11 @@ CLASS ZTMF_CL_TRFED_PARAMETERS IMPLEMENTATION.
   ENDMETHOD.
 
 
-  method VALIDATE.
+  METHOD validate.
 
 *-----------------------------------------------------------
 *    Insert business rules for your scenario validation
 *-----------------------------------------------------------
 
-  endmethod.
+  ENDMETHOD.
 ENDCLASS.

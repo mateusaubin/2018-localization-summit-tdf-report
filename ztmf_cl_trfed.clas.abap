@@ -1,12 +1,12 @@
-class ZTMF_CL_TRFED definition
-  public
-  inheriting from /TMF/CL_SPED
-  final
-  create public .
+CLASS ztmf_cl_trfed DEFINITION
+  PUBLIC
+  INHERITING FROM /tmf/cl_sped
+  FINAL
+  CREATE PUBLIC .
 
-public section.
-protected section.
-private section.
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 ENDCLASS.
 
 
